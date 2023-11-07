@@ -1,0 +1,204 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title>
+        <ng-container title> Entidades gestoras </ng-container>
+
+        <ng-container buttonRight>
+          <button class="btn btn-success" [routerLink]="['../form']">
+            <span class="material-icons text-white me-1"> add </span>
+            Nova Entidade Gestora
+          </button>
+        </ng-container>
+      </nhe-title>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <nhe-input>
+        <input class="form-control" type="text" placeholder="Buscar" [(ngModel)]="query" (ngModelChange)="search($event)"/>
+      </nhe-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="nhe-table">
+        <thead>
+          <tr>
+            <th></th>
+
+            <!--  -->
+            <!-- <ng-container *ngIf="regulatoryBodyHasSelected">
+              <ng-container *ngIf="sidebarHasMinimized; else templateThToSidebarNotMinimized">
+                <th>Razão social</th>
+                <th>CNPJ</th>
+              </ng-container>
+              <ng-template #templateThToSidebarNotMinimized>
+                <th>Entidade gestora</th>
+              </ng-template>
+            </ng-container> -->
+            <th>Razão social</th>
+            <th>CNPJ</th>
+            <!--  -->
+
+            <!-- <th style="white-space: nowrap">Ano-base</th> -->
+            <!-- <th>Indicador</th> -->
+            <!-- <th>Status</th> -->
+            <!-- <th>Meta</th> -->
+            <th  style="white-space: nowrap;">Última atualização</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let ecoDuty of ecoDuties">
+            <td>
+              <button
+                type="button"
+                class="btn btn-link py-1 px-2"
+                [style]="
+                  'border-radius: 4.8px;' +
+                  (isCurrentEcoDuty(ecoDuty)
+                    ? 'background-color: var(--color-primary); color: #ffffff;'
+                    : '')
+                "
+                (click)="setEcoDuty(ecoDuty)"
+                [attr.disabled]="isCurrentEcoDuty(ecoDuty) || null"
+              >
+                {{ isCurrentEcoDuty(ecoDuty) ? "Selecionado" : "Selecionar" }}
+              </button>
+            </td>
+
+            <!--  -->
+            <!-- <ng-container *ngIf="regulatoryBodyHasSelected">
+              <ng-container *ngIf="sidebarHasMinimized; else templateTdToSidebarNotMinimized">
+                <td>
+                  <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 10rem;">
+                    {{ ecoDuty?.managing_organization?.legal_name || "" }}
+                  </p>
+                </td>
+                <td>
+                  <p style="white-space: nowrap;">
+                    {{
+                      ecoDuty?.managing_organization?.federal_registration || ""
+                        | cnpj
+                    }}
+                  </p>
+                </td>
+              </ng-container>
+
+              <ng-template #templateTdToSidebarNotMinimized>
+                <td>
+                  <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 10rem;">
+                    {{ ecoDuty?.managing_organization?.legal_name || "" }}
+                  </p>
+                  <p style="max-width: 10rem;">
+                    {{
+                      ecoDuty?.managing_organization?.federal_registration || ""
+                        | cnpj
+                    }}
+                  </p>
+                </td>
+              </ng-template>
+            </ng-container> -->
+            <td>
+              <p>
+                {{ ecoDuty?.managing_organization?.legal_name || "" }}
+              </p>
+            </td>
+            <td>
+              <p style="white-space: nowrap;">
+                {{
+                  ecoDuty?.managing_organization?.federal_registration || ""
+                    | cnpj
+                }}
+              </p>
+            </td>
+            <!--  -->
+
+            <!-- <td>{{ ecoDuty.eco_ruleset.duty_year }}</td> -->
+            <!-- <td>{{ ecoDuty.managing_code }}</td> -->
+            <!-- <td>{{ ecoDuty.status }}</td> -->
+            <!-- <td>Meta para definir</td> -->
+            <td style="width: 12.5rem">
+              {{ ecoDuty.updated_at | date: "dd/MMM/YYYY HH:mm" ?? "-" }}
+            </td>
+            <td style="width: 6.5rem">
+              <div class="d-flex justify-content-center align-items-center">
+                <button
+                  class="material-icons btn btn-outline-danger btn-outline-mini ms-3"
+                  (click)="delete(ecoDuty)"
+                >
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="metadata">
+    <div class="col d-flex justify-content-end">
+      <nhe-pagination
+        [totalItems]="metadata.meta.total"
+        [perPage]="metadata.meta.per_page"
+        [maxSize]="10"
+        (pageChanged)="pageChanged($event)"
+      >
+      </nhe-pagination>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h2 class="modal-title pull-left">Novo Sistema de Logística Reversa</h2>
+
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <form class="modal-body">
+    <div class="mb-4">
+      <nhe-input label="Ano/Estado disponíveis">
+        <ng-container [formGroup]="ecoDutyForm">
+          <select
+            name="eco-rulesets"
+            id="eco-rulesets"
+            formControlName="eco_ruleset_id"
+          >
+            <option
+              [value]="ecoRuleset.id"
+              *ngFor="let ecoRuleset of ecoRulesets"
+            >
+              {{ ecoRuleset.duty_year }} /
+              {{ ecoRuleset.eco_system.location.acronym }}
+            </option>
+          </select>
+        </ng-container>
+      </nhe-input>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between mt-5 modal-btns">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">
+        Cancelar
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary d-flex flex-row align-items-center btn-save"
+        (click)="submit()"
+      >
+        <span class="material-icons text-white mx-1"> save </span>
+        Salvar
+      </button>
+    </div>
+  </form>
+</ng-template>

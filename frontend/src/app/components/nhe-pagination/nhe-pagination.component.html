@@ -1,0 +1,33 @@
+<div class="d-flex flex-row align-item-center">
+  <div class="py-2 me-5">
+    Visualizando {{ totalItems > perPage ? perPage : totalItems }} de
+    {{ totalItems }}
+  </div>
+
+  <div>
+    <pagination
+      [totalItems]="totalItems"
+      [maxSize]="maxSize"
+      (pageChanged)="pageChanged.emit($event)"
+      [(ngModel)]="currentPage"
+      [customPreviousTemplate]="prevTemplate"
+      [customNextTemplate]="nextTemplate"
+    ></pagination>
+
+    <ng-template #nextTemplate>
+      <ng-container>
+        <span class="material-icons" style="font-size: 21px">
+          arrow_forward_ios
+        </span>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #prevTemplate>
+      <ng-container>
+        <span class="material-icons" style="font-size: 21px">
+          arrow_back_ios
+        </span>
+      </ng-container>
+    </ng-template>
+  </div>
+</div>

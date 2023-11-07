@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h2 class="modal-title pull-left">{{ title }}</h2>
+
+  <button
+    type="button"
+    class="pull-right btn p-0"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span class="material-icons"> close </span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="div-input">
+    <div
+      for="input-file-upload-model"
+      class="d-flex flex-column align-items-center label-input"
+    >
+      <ng-template #iconAddPhotoAlternate>
+        <span class="material-icons add-photo-alternate">
+          add_photo_alternate
+        </span>
+      </ng-template>
+
+      <img
+        *ngIf="type === 'file'; else iconAddPhotoAlternate"
+        [src]="fileImg"
+        alt="file"
+        class="image-file"
+      />
+
+      <label
+        for="input-file-upload-model"
+        class="btn btn-primary btn-send-file"
+      >
+        <img
+          [src]="fileUploadImg"
+          alt="file-upload"
+          class="image-file-upload"
+        />
+
+        Selecione {{ typeMessage }}
+      </label>
+
+      <strong>Ou arraste {{ typeMessage }} para esta área</strong>
+      <span>No máximo 20mb{{ acceptTypesMessage }}</span>
+    </div>
+
+    <input
+      type="file"
+      id="input-file-upload-model"
+      (change)="returnFiles($event.target)"
+      [attr.multiple]="allowMultiple || null"
+      [attr.accept]="acceptTypesStr || null"
+    />
+  </div>
+</div>

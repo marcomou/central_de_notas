@@ -1,0 +1,14 @@
+<div class="btn-group" dropdown>
+  <a dropdownToggle class="dropdown-toggle d-flex flex-row align-items-center a-dropdown-toggle"
+    aria-controls="dropdown-basic">
+    <img *ngIf="iconSrc" [src]="iconSrc">
+    <span class="span-text" [style]="'max-width: ' + maxWidth + ';'"> {{ prefix + label }} </span>
+    <span class="caret"></span>
+  </a>
+
+  <ul *dropdownMenu class="dropdown-menu ul-dropdown-menu" role="menu" aria-labelledby="button-basic">
+    <li role="menuitem" *ngFor="let obj of content" (click)="setValue(obj)">
+      <a> {{ obj.name }} </a>
+    </li>
+  </ul>
+</div>

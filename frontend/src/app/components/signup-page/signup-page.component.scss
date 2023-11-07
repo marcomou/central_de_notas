@@ -1,0 +1,32 @@
+.arrow-icon-left {
+  transform: rotate(180deg);
+}
+
+.alert {
+  width: max-content;
+
+  p {
+    font-size: 1rem !important;
+
+    a {
+      color: var(--color-black);
+
+      &:hover {
+        color: var(--color-primary);
+
+        strong {
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+}
+
+.signup-btns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  button {
+    border-radius: 6px;
+  }
+}

@@ -1,0 +1,114 @@
+<div class="container mt-4">
+  <div class="row mb-5">
+    <div class="col-12">
+      <nhe-eco-duty-status></nhe-eco-duty-status>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title routerLinkButtonLeft="/systems/reverse-systems-list">
+        <ng-container title> Empresas Aderentes </ng-container>
+
+        <ng-container buttonRight>
+          <button class="btn btn-success" [routerLink]="['../form']">
+            <span class="material-icons text-white me-1"> add </span>
+            Nova empresa aderente
+          </button>
+        </ng-container>
+      </nhe-title>
+    </div>
+  </div>
+
+  <div
+    class="row mb-3"
+    *ngIf="representativeEntitiesList && representativeEntitiesList.length > 0"
+  >
+    <div class="col-12 d-flex align-items-center">
+        <input
+          class="input-search"
+          type="text"
+          placeholder="Buscar"
+          name="search-representative-list"
+          id="search-representative-list"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary ms-3"
+          routerLink="/systems/adhering-companies/mass-declaration"
+        >
+          <span class="material-icons me-1"> assignment_late </span>
+          Declaração de Massa
+        </button>
+
+        <!-- <button
+          type="button"
+          class="btn btn-outline-secondary ms-3"
+          [disabled]="true"
+        >
+          <span class="material-icons me-1"> upload </span>
+          Exportar como planilha
+        </button>
+
+        <button type="button" class="btn btn-warning ms-3">
+          <span class="material-icons text-white me-1">
+            assignment_turned_in
+          </span>
+          Verificar
+        </button> -->
+    </div>
+  </div>
+
+  <div class="row" *ngIf="representativeEntitiesList">
+    <div class="col-lg-12">
+      <ng-template #tableEmpty>
+        <div class="alert alert-info">Nenhuma empresa cadastrada</div>
+      </ng-template>
+
+      <table
+        class="nhe-table"
+        *ngIf="representativeEntitiesList.length; else tableEmpty"
+      >
+        <thead>
+          <tr>
+            <th>Razão Social</th>
+            <th>CNPJ</th>
+            <th>Endereço</th>
+            <th>Município UF</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let membership of representativeEntitiesList">
+            <td>{{ membership.member_organization?.front_name }}</td>
+            <td>
+              {{
+                membership.member_organization?.federal_registration || ""
+                  | cnpj
+              }}
+            </td>
+            <td>-</td>
+            <td>-</td>
+            <td style="width: 6.5rem">
+              <div class="d-flex justify-content-center align-items-center">
+                <button
+                  class="material-icons btn btn-outline-warning btn-outline-mini"
+                  (click)="edit(membership)"
+                >
+                  edit
+                </button>
+                <button
+                  class="material-icons btn btn-outline-danger btn-outline-mini ms-3"
+                  (click)="delete(membership)"
+                >
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

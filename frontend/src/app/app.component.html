@@ -1,0 +1,70 @@
+<ng-http-loader></ng-http-loader>
+
+<ng-template #layoutWithoutSidebar>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<div
+  *ngIf="layoutDefault; else layoutWithoutSidebar"
+  id="content"
+  class="d-flex flex-column w-100"
+>
+  <div id="navbar" *ngIf="showNavbar">
+    <div class="navbar-btns d-flex flex-row">
+      <ng-container *ngFor="let link of navbarLinks">
+        <a
+          *ngIf="showLink(link.withRegulatoryBodySelected)"
+          class="navbar-btn"
+          [routerLink]="link.path"
+          routerLinkActive="selected"
+        >
+          <img [src]="link.icon" />
+  
+          <span class="p3">{{ link.name }}</span>
+        </a>
+      </ng-container>
+
+      <div class="d-flex flex-row align-items-center ms-auto">
+        <nhe-select
+          *ngIf="organizations.length > 1"
+          label="Selecione"
+          prefix="Organização: "
+          [iconSrc]="NHE_ICONS.domain"
+          [content]="dropdownOrgs"
+          [value]="regulatoryBody?.id || managingOrganization?.id || false"
+          (valueChange)="changeOrganization($event)"
+        ></nhe-select>
+  
+        <div
+          class="d-flex flex-row align-items-center ms-auto"
+          (mouseover)="changeVisibilityFromOptionsBox(true)"
+          (mouseleave)="changeVisibilityFromOptionsBox(false)"
+        >
+  
+          <button type="button" class="btn btn-circle name ms-3">
+            {{ initialsName }}
+          </button>
+  
+          <div class="d-flex flex-column align-items-end user-options" style="z-index: 99;">
+            <button type="button" class="p3 username">
+              {{ username }}
+              <img [src]="NHE_ICONS.arrow_bottom" />
+            </button>
+  
+            <div class="options-box" *ngIf="optionsBoxIsVisible">
+              <div class="options float-end">
+                <button class="option" [routerLink]="['organization-registration-data']">
+                  Dados Cadastrais
+                </button>
+                <button class="option" (click)="signOut()">Sair</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-body h-100 w-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

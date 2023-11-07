@@ -1,0 +1,42 @@
+<div id="box" [attr.style]="style" [class]="'p-5 ' + class" [ngStyle]="{ width: '100%' }">
+  <div class="box-header">
+    <h2 class="title">{{ label }}</h2>
+
+    <div
+      class="title-wrapper d-flex align-items-center justify-content-between"
+    >
+      <div class="d-flex align-items-center justify-content-between box-btns">
+        <button
+          *ngIf="hasLeftButton"
+          class="btn btn-success text-white left-button"
+          (click)="leftButtonClick()"
+        >
+          {{ leftButtonLabel }}
+        </button>
+
+        <ng-content *ngIf="!hasLeftButton" select="[button]"></ng-content>
+
+        <button
+          *ngIf="isAnCollapse"
+          class="btn btn-link d-flex btn-box ms-3"
+          (click)="isCollapsed = !isCollapsed"
+        >
+          <span
+            [class]="
+              'material-icons-outlined arrow' + (isCollapsed ? ' up' : '')
+            "
+          >
+            arrow_drop_down
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="collapse box-content"
+    [collapse]="isCollapsed"
+    [isAnimated]="true"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row table-header mt-5">
+  <div
+    class="col d-flex justify-content-center align-items-center"
+    *ngFor="let header of headers"
+    (click)="sort(header)"
+    [class]="header.class"
+    role="button"
+  >
+    {{ header.name }}
+    <div class="icons d-flex flex-column">
+      <span
+        class="material-icons-outlined"
+        *ngIf="header?.sortable"
+        [ngClass]="{ 'text-success': header?.sorted?.asc }"
+      >
+        arrow_drop_up
+      </span>
+      <span
+        class="material-icons-outlined"
+        *ngIf="header?.sortable"
+        [ngClass]="{ 'text-success': header?.sorted?.desc }"
+      >
+        arrow_drop_down
+      </span>
+    </div>
+  </div>
+</div>
+<div class="table-content">
+  <ng-content></ng-content>
+</div>

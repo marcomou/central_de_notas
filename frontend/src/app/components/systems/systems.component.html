@@ -1,0 +1,13 @@
+<div class="d-flex flex-row">
+  <app-sidebar
+    *ngIf="hasEcoDutySelected"
+    style="margin-right: 20px"
+    [title]="title"
+    [menuItems]="menuItems"
+    (change)="sidebarChanged($event)"
+  ></app-sidebar>
+
+  <div style="width: 100%">
+    <router-outlet></router-outlet>
+  </div>
+</div>

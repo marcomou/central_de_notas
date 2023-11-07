@@ -1,0 +1,188 @@
+$grid-gap-row: 1.875rem;
+$grid-gap-column: 2.25rem;
+
+.box-white {
+  padding: 1.1875rem 1.875rem;
+
+  border: 1px solid rgba(89, 89, 92, 0.1);
+  border-radius: 10px;
+
+  background: #ffffff;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: $grid-gap-column;
+
+  .materials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: $grid-gap-row;
+
+    .material-box {
+      padding: 0.9375rem 1.25rem;
+      border-radius: 6px;
+      box-shadow: 0px 16px 6.324px rgba(239, 241, 249, 0.75);
+
+      .material-name {
+        font-size: 1.375rem;
+        font-weight: 700;
+
+        img {
+          height: 1.3125rem;
+        }
+      }
+
+      p {
+        font-size: 0.875rem;
+      }
+
+      strong {
+        font-size: 0.875rem;
+
+        &.great {
+          font-size: 1.375rem;
+        }
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+
+        border-radius: 2px;
+
+        background-color: rgba(255, 255, 255, 0.15);
+
+        overflow: hidden;
+        & > div {
+          height: 100%;
+          transition: 0.5s;
+
+          border-radius: 2px;
+
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .systems-and-mass {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: $grid-gap-row;
+
+    .systems {
+      .div-table {
+        padding-right: 5px;
+        height: 27.5rem;
+
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+
+          background-color: #eeeeee;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+
+          background: #cccccc8c;
+
+          &:hover {
+            background: #cccccc;
+          }
+        }
+
+        table {
+          position: relative;
+          top: -10px;
+
+          thead {
+            * {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .organizations {
+    display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $grid-gap-row;
+
+    .organization {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .organization-img {
+        padding: 0.75rem;
+        margin-right: 1.4375rem;
+
+        border-radius: 12px;
+
+        background: #59595c4d;
+
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .invoices-and-report {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $grid-gap-row;
+
+    .report {
+      .div-table {
+        padding-right: 5px;
+        height: 27.5rem;
+
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+
+          background-color: #eeeeee;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+
+          background: #cccccc8c;
+
+          &:hover {
+            background: #cccccc;
+          }
+        }
+
+        table {
+          position: relative;
+          top: -10px;
+
+          thead {
+            * {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

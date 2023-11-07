@@ -1,0 +1,106 @@
+.nhe-table {
+  $border: 1px solid #a9a9a9;
+  $padding-first-and-end-table: 30px;
+  $padding-inside-table: 15px;
+  $border-radius-first: 4.8px 0 0 4.8px;
+  $border-radius-last: 0 4.8px 4.8px 0;
+
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0 10px;
+
+  thead {
+    tr {
+      th {
+        padding: 10px $padding-inside-table;
+
+        &:first-of-type {
+          padding-left: $padding-first-and-end-table;
+
+          border-radius: $border-radius-first;
+        }
+
+        &:last-of-type {
+          padding-right: $padding-first-and-end-table;
+
+          border-radius: $border-radius-last;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      margin-top: 10px;
+
+      td {
+        padding: 14px $padding-inside-table;
+
+        &:first-of-type {
+          padding-left: $padding-first-and-end-table;
+        }
+
+        &:last-of-type {
+          padding-right: $padding-first-and-end-table;
+        }
+      }
+    }
+  }
+
+  &:not(.without-head) {
+    thead {
+      tr {
+        th {
+          font-size: 0.875rem;
+
+          border-top: $border;
+          border-bottom: $border;
+
+          background-color: #eeeeee;
+
+          &:first-of-type {
+            border-left: $border;
+          }
+
+          &:last-of-type {
+            border-right: $border;
+          }
+        }
+      }
+    }
+  }
+
+  &:not(.without-rows) {
+    tbody {
+      tr {
+        margin-top: 10px;
+
+        td {
+          font-size: 0.875rem;
+
+          padding: 14px $padding-inside-table;
+
+          border-top: $border;
+          border-bottom: $border;
+
+          background-color: #ffffff;
+
+          &:first-of-type {
+            padding-left: $padding-first-and-end-table;
+
+            border-left: $border;
+            border-radius: $border-radius-first;
+          }
+
+          &:last-of-type {
+            padding-right: $padding-first-and-end-table;
+
+            border-right: $border;
+            border-radius: $border-radius-last;
+          }
+        }
+      }
+    }
+  }
+}

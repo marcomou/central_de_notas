@@ -1,0 +1,65 @@
+$color-primary: #0f79c6;
+$color-secondary: #58595b;
+$color-green: #0f79c6;
+$color-blue: #0f79c6;
+$color-yellow: #fdcc4e;
+$color-red: #aa1006; // #FB4143
+$color-black: #58595b;
+$color-white: #ffffff;
+$color-bg-green: #f0fff8;
+$color-bg-white: #ffffff;
+$color-gray-primary: #f6fbff;
+$color-gray-secondary: #d7dfe5;
+
+$blue: $color-blue !default;
+// $indigo:  #6610f2 !default;
+// $purple:  #6f42c1 !default;
+// $pink:    #d63384 !default;
+$red: $color-red !default;
+// $orange:  #fd7e14 !default;
+$yellow: $color-yellow !default;
+$green: $color-green !default;
+$black: $color-black !default;
+$white: $color-white !default;
+// $teal:    #20c997 !default;
+// $cyan:    #0dcaf0 !default;
+
+$primary: $color-primary !default;
+$secondary: $color-secondary !default;
+$success: $color-green !default;
+$info: $color-gray-secondary !default;
+$warning: $color-yellow !default;
+$danger: $color-red !default;
+$light: $color-gray-primary !default;
+$dark: $color-gray-secondary !default;
+
+$font-size-base: 1rem !default;
+$input-btn-padding-y: 0.8125rem !default;
+$input-btn-padding-x: 2rem !default;
+
+:root {
+  --color-primary: #0f79c6;
+  --color-secondary: #58595b;
+  --color-green: #0f79c6;
+  --color-blue: #0f79c6;
+  --color-yellow: #fdcc4e;
+  --color-red: #aa1006; // #FB4143
+  --color-black: #58595b;
+  --color-white: #ffffff;
+  --color-bg-green: #f0fff8;
+  --color-bg-white: #fcfdfe;
+  --color-gray-primary: #f6fbff;
+  --color-gray-secondary: #d7dfe5;
+  --color-borders: #949495;
+
+  font-size: 12px;
+
+  --header-content-height: 5.9375rem;
+  --header-input: calc(1.1875rem + 1.1875rem + 1.66rem);
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    font-size: 16px;
+  }
+}

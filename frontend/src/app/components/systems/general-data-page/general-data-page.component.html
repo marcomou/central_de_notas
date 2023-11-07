@@ -1,0 +1,352 @@
+<div class="container my-4">
+  <div class="row mb-5">
+    <div class="col-12">
+      <nhe-eco-duty-status></nhe-eco-duty-status>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title routerLinkButtonLeft="/systems/reverse-systems-list">
+        <ng-container title>Dados Gerais</ng-container>
+
+        <ng-container *ngIf="canUpdateGeneralData" buttonRight>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="submit()"
+            [attr.disabled]="!(form.valueChanges | async) || null"
+          >
+            <span class="material-icons text-white me-1">save</span>
+            Salvar
+          </button>
+        </ng-container>
+      </nhe-title>
+    </div>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-lg-12">
+        <nhe-box
+          label="Descrição do Sistema de Logística Reversa"
+          [isAnCollapse]="true"
+          formGroupName="metadata"
+        >
+          <div class="row mb-4">
+            <div class="col-lg-12">
+              <nhe-input label="Nome do Sistema">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="system_name"
+                  id="system_name"
+                  formControlName="system_name"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-lg-12">
+              <nhe-input label="Resíduo Objeto do Sistema">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="residual_object_system"
+                  id="residual_object_system"
+                  formControlName="residual_object_system"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-lg-6">
+              <nhe-input label="URL Página na Internet">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="url_page"
+                  id="url_page"
+                  formControlName="url_page"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+            <div class="col-lg-6">
+              <nhe-input label="Texto Página na Internet">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="url_name"
+                  id="url_name"
+                  formControlName="url_name"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <nhe-input label="Breve Descrição do Sistema">
+                <textarea
+                  name="description"
+                  id="description"
+                  cols="30"
+                  rows="5"
+                  class="form-control"
+                  formControlName="description"
+                  [readonly]="!canUpdateGeneralData"
+                ></textarea>
+              </nhe-input>
+            </div>
+          </div>
+        </nhe-box>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-12" formGroupName="metadata">
+        <nhe-box
+          label="Interlocutor responsável pela Comunicação sobre o Sistema"
+          [isAnCollapse]="true"
+          formGroupName="interloctor"
+        >
+          <div class="row mt-5">
+            <div class="col-lg-12">
+              <span class="fw-bold">
+                Interlocutor responsável pela Comunicação sobre o Sistema
+              </span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-lg-6">
+              <nhe-input label="Nome">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  formControlName="name"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+            <div class="col-lg-3">
+              <nhe-input label="CPF">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="document"
+                  id="document"
+                  formControlName="document"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+            <div class="col-lg-3">
+              <nhe-input label="RG">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="registration_document"
+                  id="registration_document"
+                  formControlName="registration_document"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <nhe-input label="Telefone">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  id="phone"
+                  formControlName="phone"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+            <div class="col-lg-6">
+              <nhe-input label="Email">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  formControlName="email"
+                  [readonly]="!canUpdateGeneralData"
+                />
+              </nhe-input>
+            </div>
+          </div>
+        </nhe-box>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-12" formGroupName="metadata">
+        <nhe-box
+          label="Dados Operacionais do Sistema de Logística Reversa"
+          [isAnCollapse]="true"
+          formGroupName="operational_data"
+        >
+          <div class="row">
+            <div class="col-lg-12">
+              <span class="fw-bold">
+                Tipo(s) de Operacionalização contemplados no sistema
+              </span>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-lg-12">
+              <input
+                class="form-check-input mx-2"
+                type="checkbox"
+                name="support_screening_centers"
+                id="support_screening_centers"
+                formControlName="support_screening_centers"
+                [readonly]="!canUpdateGeneralData"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Apoio às Centrais de Triagem (Cooperativas e Associações de
+                Catadores)
+              </label>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-lg-12">
+              <input
+                class="form-check-input mx-2"
+                type="checkbox"
+                name="recycling_credit_system"
+                id="recycling_credit_system"
+                formControlName="recycling_credit_system"
+                [readonly]="!canUpdateGeneralData"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Sistema de Crédito de Reciclagem
+              </label>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-lg-12">
+              <span class="fw-bold"> Sistema de Crédito de Reciclagem </span>
+            </div>
+          </div>
+          <div
+            class="row"
+            formGroupName="recycling_credit_system_residual_percent"
+          >
+            <div class="col-lg-3">
+              <nhe-input label="Papel">
+                <div
+                  class="input-group mb-3"
+                  [ngClass]="{ readonly: !canUpdateGeneralData }"
+                >
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Papel"
+                    aria-label="Papel"
+                    aria-describedby="basic-addon2"
+                    name="papper"
+                    id="papper"
+                    formControlName="papper"
+                    [readonly]="!canUpdateGeneralData"
+                  />
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </nhe-input>
+            </div>
+            <div class="col-lg-3">
+              <nhe-input label="Plástico">
+                <div
+                  class="input-group mb-3"
+                  [ngClass]="{ readonly: !canUpdateGeneralData }"
+                >
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Plástico"
+                    aria-label="Plástico"
+                    aria-describedby="basic-addon2"
+                    name="plastic"
+                    id="plastic"
+                    formControlName="plastic"
+                    [readonly]="!canUpdateGeneralData"
+                  />
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </nhe-input>
+            </div>
+            <div class="col-lg-3">
+              <nhe-input label="Vidro">
+                <div
+                  class="input-group mb-3"
+                  [ngClass]="{ readonly: !canUpdateGeneralData }"
+                >
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Vidro"
+                    aria-label="Vidro"
+                    aria-describedby="basic-addon2"
+                    name="glass"
+                    id="glass"
+                    formControlName="glass"
+                    [readonly]="!canUpdateGeneralData"
+                  />
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </nhe-input>
+            </div>
+            <div class="col-lg-3">
+              <nhe-input label="Metal">
+                <div
+                  class="input-group mb-3"
+                  [ngClass]="{ readonly: !canUpdateGeneralData }"
+                >
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Metal"
+                    aria-label="Metal"
+                    aria-describedby="basic-addon2"
+                    name="metal"
+                    id="metal"
+                    formControlName="metal"
+                    [readonly]="!canUpdateGeneralData"
+                  />
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </nhe-input>
+            </div>
+          </div>
+        </nhe-box>
+      </div>
+    </div>
+
+    <div
+      *ngIf="canUpdateGeneralData"
+      class="row mt-5 mb-5 d-flex justify-content-end align-items-center"
+    >
+      <div class="col-lg-6 d-flex justify-content-end align-items-center">
+        <button class="w-25 mx-1 btn btn-dark text-white">Cancelar</button>
+        <button
+          class="w-25 mx-1 btn btn-success text-white d-flex justify-content-center align-items-center"
+          (click)="submit()"
+          [attr.disabled]="!(form.valueChanges | async) || null"
+        >
+          <span class="material-icons text-white"> save </span>
+          <span class="text-white mx-1"> Salvar </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

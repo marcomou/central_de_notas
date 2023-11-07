@@ -1,0 +1,19 @@
+.nhe-title {
+  .title {
+    *:not(a) {
+      color: var(--color-primary);
+    }
+  
+    a {
+      width: 27px;
+      margin-right: 10px;
+      font-size: 27px;
+    }
+  }
+
+  button {
+    span {
+      margin-right: 5px;
+    }
+  }
+}

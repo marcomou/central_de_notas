@@ -1,0 +1,69 @@
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  // padding: 1.25rem 3.125rem;
+  padding: 1.125rem 3.125rem;
+  font-size: 1rem !important;
+  font-weight: 600;
+
+  border-radius: 12px;
+
+  white-space: nowrap;
+
+  span.material-icons {
+    font-size: 1.5rem;
+  }
+}
+
+.btn-link {
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  font-weight: 400;
+}
+
+$btns: "btn-primary", "btn-success", "btn-warning", "btn-danger";
+@each $btn in $btns {
+  .#{$btn},
+  .#{$btn}[disabled],
+  .#{$btn}:hover,
+  .#{$btn}:focus,
+  .#{$btn}:active {
+    color: $color-white !important;
+  }
+}
+
+// Buttons outlines
+$btns-outline: "btn-outline-primary", "btn-outline-success",
+  "btn-outline-warning", "btn-outline-danger", "btn-outline-secondary";
+@each $btn in $btns-outline {
+  .#{$btn}:hover,
+  .#{$btn}:active {
+    color: $color-white;
+    * {
+      color: $color-white !important;
+    }
+  }
+}
+
+// New btn
+.btn-mini,
+.btn-outline-mini {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 0.625rem;
+}
+
+.btn-outline-mini:not(:hover) {
+  border-color: #d8d8d8 !important;
+  color: #a4a4a4 !important;
+}

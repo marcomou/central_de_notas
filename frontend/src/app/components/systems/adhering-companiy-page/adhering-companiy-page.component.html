@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row mb-5">
+    <div class="col-12">
+      <nhe-eco-duty-status></nhe-eco-duty-status>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title routerLinkButtonLeft="/systems/adhering-companies/list">
+        <ng-container title>
+          {{ ecoMembership?.member_organization?.front_name || 'Empresa aderente' }}
+        </ng-container>
+      </nhe-title>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <nhe-tab [(subpages)]="subpages"></nhe-tab>
+
+    <ng-container *ngIf="subpages.data.enabled">
+      <app-data-adhering-companiy-subpage
+        [ecoMembership]="ecoMembership"
+      ></app-data-adhering-companiy-subpage>
+    </ng-container>
+
+    <ng-container *ngIf="subpages.documents.enabled">
+      <app-documents-adhering-companiy-subpage
+        [ecoMembershipId]="ecoMembership?.id || ''"
+      ></app-documents-adhering-companiy-subpage>
+    </ng-container>
+  </div>
+</div>

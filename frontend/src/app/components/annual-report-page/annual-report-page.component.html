@@ -1,0 +1,600 @@
+<div class="container-fluid my-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex flex-row align-items-center justify-content-end">
+        <!-- <div class="alert alert-danger px-5">
+          <p>
+            <strong>
+              Massa comprovada insuficiente para atingimento da meta.
+            </strong>
+          </p>
+        </div> -->
+
+        <!-- <div>
+          <button type="button" class="btn btn-primary" disabled>
+            <span class="material-icons text-white me-1">save</span>
+            Enviar relatório
+          </button>
+        </div>
+      </div> -->
+      </div>
+    </div>
+
+    <!-- <div class="row mb-4">
+    <div class="col-12">
+      <nhe-box
+        [isAnCollapse]="true"
+        label="Revisões do Relatório"
+        [hasLeftButton]="true"
+        leftButtonLabel="Responder ao Ofício de Pendências"
+      >
+        <table class="nhe-table">
+          <thead>
+            <tr>
+              <th>Inciso I do Artigo 6º</th>
+              <th>Inciso II do Artigo 6º</th>
+              <th>Inciso III do Artigo 6º</th>
+              <th>Inciso IV do Artigo 6º</th>
+              <th>Inciso V do Artigo 6º</th>
+              <th>Inciso VI do Artigo 6º</th>
+              <th>Comprovação da Meta</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let reportReview of reportReviews">
+              <td>{{ reportReview.subsection1 }}</td>
+              <td>{{ reportReview.subsection2 }}</td>
+              <td>{{ reportReview.subsection3 }}</td>
+              <td>{{ reportReview.subsection4 }}</td>
+              <td>{{ reportReview.subsection5 }}</td>
+              <td>{{ reportReview.subsection6 }}</td>
+              <td>{{ reportReview.proofOfTheGoal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </nhe-box>
+    </div>
+  </div> -->
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <nhe-box
+          [isAnCollapse]="true"
+          label="Resultados e atendimento às metas quantitativas"
+        >
+          <div class="row">
+            <div class="col-12">
+              <table class="nhe-table without-head">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>
+                      <div class="d-flex flex-row align-items-end">
+                        <img
+                          width="35px"
+                          class="annual-report-img"
+                          [src]="icon_paper"
+                          alt="paper"
+                        />
+                        <strong>Papel</strong>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="d-flex flex-row align-items-end">
+                        <img
+                          width="35px"
+                          class="annual-report-img"
+                          [src]="icon_plastic"
+                          alt="plastic"
+                        />
+                        <strong>Plástico</strong>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="d-flex flex-row align-items-end">
+                        <img
+                          width="35px"
+                          class="annual-report-img"
+                          [src]="icon_glass"
+                          alt="glass"
+                        />
+                        <strong>Vidro</strong>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="d-flex flex-row align-items-end">
+                        <img
+                          width="35px"
+                          class="annual-report-img"
+                          [src]="icon_metal"
+                          alt="metal"
+                        />
+                        <strong>Metal</strong>
+                      </div>
+                    </th>
+                    <th><strong>TOTAL</strong></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      Massa total de produto ou embalagem colocada no mercado
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .validatedMasses('paper')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .validatedMasses('plastic')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .validatedMasses('glass')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .validatedMasses('metal')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials().validatedMasses()?.total
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Meta definida</td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()?.defined_goals_percent?.paper
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()?.defined_goals_percent
+                                ?.plastic
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()?.defined_goals_percent?.glass
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()?.defined_goals_percent?.metal
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <ng-container
+                            *ngIf="resultsByMaterials().defined_goals_percent"
+                          >
+                            <input
+                              type="text"
+                              class="form-control"
+                              [value]="
+                                resultsByMaterials().defined_goals_percent
+                                  .metal +
+                                resultsByMaterials().defined_goals_percent
+                                  .glass +
+                                resultsByMaterials().defined_goals_percent
+                                  .plastic +
+                                resultsByMaterials().defined_goals_percent.paper
+                              "
+                              disabled
+                            />
+                          </ng-container>
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Massa a comprovar na meta</td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .definedGoals('paper')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .definedGoals('plastic')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .definedGoals('glass')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .definedGoals('metal')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="resultsByMaterials().definedGoals().total"
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Massa total comprovada</td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .liabilityDeclarations('paper')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .liabilityDeclarations('plastic')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .liabilityDeclarations('glass')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()
+                                .liabilityDeclarations('metal')
+                                ?.mass_kg?.toString()
+                                ?.replace('.', ',')
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                    <td>
+                      <nhe-input>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [value]="
+                              resultsByMaterials()?.liabilityDeclarations()
+                                ?.total
+                            "
+                            disabled
+                          />
+                          <span class="input-group-text">t</span>
+                        </div>
+                      </nhe-input>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </nhe-box>
+      </div>
+    </div>
+
+    <!-- <div class="row mb-4">
+    <div class="col-12">
+      <nhe-box [isAnCollapse]="true" label="Quantidades por Operador">
+        <div class="row">
+          <div class="col-12">
+            <table class="nhe-table">
+              <thead>
+                <tr>
+                  <th>CNPJ</th>
+                  <th>Nome</th>
+                  <th>Massa de Entrada Validada</th>
+                  <th>Massa de Saída Validada</th>
+                  <th>Massa de Final Validada</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let info of quantitiesPerOperator">
+                  <td>{{ info.federal_registration }}</td>
+                  <td>{{ info.legal_name }}</td>
+                  <td>{{ info.validatedInputMass.toFixed(2) }} t</td>
+                  <td>{{ info.validatedOutputMass.toFixed(2) }} t</td>
+                  <td>{{ info.validatedFinalMass.toFixed(2) }} t</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-12">
+            <div class="d-flex flex-row justify-content-end">
+              <nhe-pagination [totalItems]="30" [maxSize]="10"></nhe-pagination>
+            </div>
+          </div>
+        </div>
+      </nhe-box>
+    </div>
+  </div> -->
+
+    <div class="row">
+      <div class="col-12">
+        <nhe-box [isAnCollapse]="true" label="Revisões do Relatório">
+          <div class="row">
+            <div class="col-12">
+              <table class="nhe-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Origem</th>
+                    <th>Avaliado</th>
+                    <th>Status</th>
+                    <th>Observações</th>
+                    <!-- <th>Anexos</th> -->
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let report of reportRevisionsRequest?.data">
+                    <td>{{ report?.id }}</td>
+                    <td>{{ report?.reviewer_user?.name }}</td>
+                    <td style="white-space: nowrap">
+                      {{ report?.reviewed_at | date: "dd/MM/yyyy hh:mm" }}
+                    </td>
+                    <td>{{ report?.type }}</td>
+                    <td>{{ report?.comments ?? "asd90uas09dj" }}</td>
+                    <!-- <td>
+                    <div
+                      style="
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-gap: 10px;
+                      "
+                    >
+                      <button
+                        *ngFor="let attachment of report.attachments"
+                        type="button"
+                        class="material-icons btn btn-outline-warning btn-outline-mini"
+                      >
+                        cloud_download
+                      </button>
+                    </div>
+                  </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <ng-template
+            *ngIf="reportRevisionsRequest && reportRevisionsRequest?.meta"
+          >
+            <div class="row mt-5">
+              <div class="col-12">
+                <div class="d-flex flex-row justify-content-end">
+                  <nhe-pagination
+                    [totalItems]="reportRevisionsRequest.meta.last_page"
+                    [maxSize]="reportRevisionsRequest.meta.last_page"
+                    (pageChanged)="pageChanged($event)"
+                  >
+                  </nhe-pagination>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </nhe-box>
+      </div>
+    </div>
+  </div>
+</div>

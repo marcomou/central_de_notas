@@ -1,0 +1,184 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-12">
+      <h1>Olá, {{ currentUser.name }}!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12"></div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="dashboard">
+        <!-- <div class="materials" *ngIf="this.ecoDuty">
+          <div
+            *ngFor="let material of materials; index as i"
+            class="d-flex flex-row justify-content-between align-items-center material-box"
+            [style]="'background-color: ' + material.background"
+          >
+            <p class="text-white material-name">
+              {{ material.name }}
+              <img [src]="recycling_symbol" alt="recycling_symbol" />
+            </p>
+
+            <strong class="text-white great">
+              {{ getCurrentLotTon(i) }} ton
+            </strong>
+          </div>
+        </div> -->
+        <div class="col-12">
+          <div class="row d-flex flex-row align-items-end">
+            <div style="flex: 1">
+              <nhe-input label="Data de início da emissão">
+                <input type="date" [(ngModel)]="startDate">
+              </nhe-input>
+            </div>
+            <div style="flex: 1">
+              <nhe-input label="Data do fim da emissão">
+                <input type="date" [(ngModel)]="endDate">
+              </nhe-input>
+            </div>
+            <div style="flex: 1">
+              <nhe-input label="Estado">
+                <select name="state" id="state" [(ngModel)]="selectedState" >
+                  <option value="" [ngValue]="null" disabled>Selecione um estado</option>
+                  <option *ngFor="let state of states" #state [value]="state.value">{{ state.label }}</option>
+                </select>
+              </nhe-input>
+            </div>
+            <div style="width: min-content;">
+              <button (click)= "fetchDate()" class="btn btn-primary p-4" style="height: var(--header-input);">
+                <span class="material-icons text-white">
+                  refresh
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="subpages.data.enabled">
+          <!--  -->
+          <div class="systems-and-mass">
+            <div class="box-white mass">
+              <p class="p3 mb-3">
+                <strong>Massa por Material</strong>
+              </p>
+
+              <div>
+                <nhe-bar-chart
+                  [chartOption]="validatedByMaterialBarChartData"
+                  [hasError]="validatedByMaterialChartError"
+                >
+                </nhe-bar-chart>
+              </div>
+            </div>
+          </div>
+
+          <div class="organizations">
+            <div
+              class="box-white organization"
+              *ngFor="let ecomembership of EcomembershipsByRoles"
+            >
+              <div class="organization-img" [class]="ecomembership.background">
+                <img
+                  [src]="iconPath + '/' + ecomembership.icon"
+                  alt="communication"
+                />
+              </div>
+
+              <div class="organization-description">
+                <p class="type">{{ ecomembership.name }}</p>
+                <p class="lot">
+                  <strong>{{ ecomembership.value }}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+
+          <div class="systems-and-mass mb-4">
+            <div class="box-white systems">
+              <p class="p3 mb-3">
+                <strong>Colidências por operador</strong>
+              </p>
+              <nhe-pie-chart
+                [chartOption]="colidenceChartData"
+                [hasError]="colidenceChartError"
+              >
+              </nhe-pie-chart>
+            </div>
+
+            <div class="box-white invoices">
+              <p class="p3 mb-3">
+                <strong>Notas por status</strong>
+              </p>
+
+              <nhe-pie-chart
+                [chartOption]="notesChartData"
+                [hasError]="notesChartError"
+              >
+              </nhe-pie-chart>
+            </div>
+          </div>
+
+          <!-- <div class="organizations">
+            <div
+              class="box-white organization"
+              *ngFor="let ecomembership of EcomembershipsByRoles"
+            >
+              <div class="organization-img" [class]="ecomembership.background">
+                <img
+                  [src]="iconPath + '/' + ecomembership.icon"
+                  alt="communication"
+                />
+              </div>
+
+              <div class="organization-description">
+                <p class="type">{{ ecomembership.name }}</p>
+                <p class="lot">
+                  <strong>{{ ecomembership.value }}</strong>
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="invoices-and-report">
+            <div class="box-white mass">
+              <p class="p3 mb-3">
+                <strong>Massa por Material</strong>
+              </p>
+
+              <div>
+                <nhe-bar-chart
+                  [chartOption]="validatedByMaterialBarChartData"
+                  [hasError]="validatedByMaterialChartError"
+                >
+                </nhe-bar-chart>
+              </div>
+            </div>
+
+            <div class="box-white report">
+              <p class="p3 mb-3">
+                <strong>Massa Validada por Operador</strong>
+              </p>
+
+              <div>
+                <nhe-bar-chart
+                  [chartOption]="validatedByOperatorBarChartData"
+                  [hasError]="validatedByOperatorChartError"
+                >
+                </nhe-bar-chart>
+              </div>
+            </div>
+          </div> -->
+        </ng-container>
+        <!-- <ng-container *ngIf="subpages.maps.enabled">
+          <div class="operators mb-5">
+            <div class="box-white">
+              <app-chart [id]="'abasda893jasd3d3d'"></app-chart>
+            </div>
+          </div>
+        </ng-container> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.status {
+  border-radius: 4px;
+  padding: 5px;
+  background-color: var(--color-primary);
+  border: 1px solid rgba(var(--color-primary), 0.3);
+  // color: white;
+
+  &.default {
+    // background-color: var(--color-yellow);
+    // border: 1px solid rgba(var(--color-yellow), 0.3);
+    background-color: #fce8b2;
+    border: 1px solid rgba(#fce8b2, 0.3);
+  }
+  &.warning {
+    // background-color: var(--color-yellow);
+    // border: 1px solid rgba(var(--color-yellow), 0.3);
+    background-color: #fce8b2;
+    border: 1px solid rgba(#fce8b2, 0.3);
+  }
+  &.danger {
+    // background-color: var(--color-red);
+    // border: 1px solid rgba(var(--color-red), 0.3);
+    background-color: #f4c7c3;
+    border: 1px solid rgba(#f4c7c3, 0.3);
+  }
+}
+
+.title {
+  color: var(--color-primary);
+}

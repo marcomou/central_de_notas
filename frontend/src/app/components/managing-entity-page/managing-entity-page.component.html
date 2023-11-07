@@ -1,0 +1,231 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <nhe-box label="Dados Cadastrais">
+        <div class="row mb-4">
+          <div class="col-12">
+            <nhe-input label="Razão Social">
+              <input type="text" [value]="organization.legal_name" disabled />
+            </nhe-input>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-12">
+            <nhe-input label="Nome fantasia">
+              <input type="text" [value]="organization.front_name" disabled />
+            </nhe-input>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-6">
+            <nhe-input label="CNPJ">
+              <input
+                type="text"
+                [value]="organization.federal_registration | cnpj"
+                disabled
+              />
+            </nhe-input>
+          </div>
+
+          <div class="col-6">
+            <nhe-input label="Status do CNPJ">
+              <input type="text" value="N/D" disabled />
+            </nhe-input>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <nhe-input label="Tipo de Resíduo">
+              <input type="text" value="Embalagens em Geral" disabled />
+            </nhe-input>
+          </div>
+        </div>
+      </nhe-box>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <nhe-box label="Usuários com acesso">
+        <ng-template #loadingUsers>
+          <div class="row">
+            <div class="col-12">
+              <p class="p2">Carregando usuários...</p>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="row" *ngIf="users$ | async as users; else loadingUsers">
+          <div class="col-12">
+            <div class="d-flex flex-column flex-lg-row justify-content-between">
+              <!-- <div class="alert alert-warning">
+                <strong class="p3">
+                  É permitido somente vincular ou excluir novos usuários a essa
+                  empresa privada.
+                </strong>
+
+                <p class="p3">
+                  A alteração dos dados de cadastro (nome, e-mail e CPF/CNPJ)
+                  deverão ser feitos diretamente no portal do Central de notas.
+                </p>
+              </div> -->
+              <div></div>
+
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="openModal(template)"
+                >
+                  + Novo Usuário
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <table class="nhe-table">
+            <thead>
+              <tr>
+                <th scope="col">Usuário</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">CPF</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.federal_registration | cpf }}</td>
+                <td>
+                  <div class="d-flex flex-row justify-content-end">
+                    <button
+                      type="button"
+                      class="material-icons btn btn-outline-danger btn-outline-mini"
+                      (click)="deleteUser(user.id)"
+                      [disabled]="deletingUsers[user.id]"
+                    >
+                      delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </nhe-box>
+    </div>
+  </div>
+
+  <div class="row mt-5" *ngIf="isManagingEntity">
+    <div class="col-12">
+      <button
+        class="btn btn-danger d-flex flex-row align-items-center justify-content-start btn-delete-organization"
+        (click)="deleteOrganization()"
+      >
+        <span class="material-icons span-delete-organization"> delete </span>
+
+        <span> Excluir cadastro desta organização </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h2 class="modal-title pull-left">Novo Usuário</h2>
+
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <form class="modal-body" [formGroup]="form" (ngSubmit)="createUser()">
+    <div class="row mb-4">
+      <div class="col-12">
+        <nhe-input label="Nome">
+        <input
+          appInputRef
+          type="text"
+          class="form-control"
+          formControlName="name"
+        />
+      </nhe-input>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <nhe-input label="CPF">
+          <input
+            appInputRef
+            type="text"
+            class="form-control"
+            formControlName="federal_registration"
+            [value]="form.get('federal_registration')?.value | cpf"
+          />
+        </nhe-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 mb-4">
+        <nhe-input label="email">
+          <input
+            appInputRef
+            type="email"
+            class="form-control"
+            formControlName="email"
+          />
+        </nhe-input>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="alert alert-warning">
+          <p class="p3">
+            <strong>Atenção!</strong>
+            Ao clicar no botão "Salvar", o usuário passará a ter acesso à conta
+            dessa organização - permitindo a leitura e a edição de dados.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showErrorMessage" class="row mb-4">
+      <div class="col-12">
+        <div class="alert alert-danger mt-4">
+          <p class="p3">Erro ao cadastrar um novo usuário, tente novamente.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex flex-row justify-content-end modal-btns">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Cancelar
+          </button>
+    
+          <button
+            type="submit"
+            class="btn btn-primary btn-save"
+            [disabled]="form.invalid || form.disabled"
+          >
+            <span class="material-icons"> save </span>
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>

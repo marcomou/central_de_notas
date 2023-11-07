@@ -1,0 +1,178 @@
+[
+    {
+        "guid": "2618e2ea-2b65-4145-979e-1afd5659b818",
+        "name": "Contrato Social ou Estatuto",
+        "code": "social_contract_or_statute",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "42795a1e-2df3-43c2-8a17-302d58aa9a10",
+        "name": "Registros fotográficos",
+        "code": "photography_records",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "49e28575-82aa-4f94-bf1b-5d4bdafe275f",
+        "name": "Coordenadas geográficas (localização)",
+        "code": "geolocalization_coordinates",
+        "description": null,
+        "required_data": "[\"latitude\",\"longitude\"]",
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "4d7b0deb-7dad-4aa8-82aa-5042ceda8092",
+        "name": "Anexo Volume de Entrada Triada",
+        "code": "input_amount_sorted_attachment",
+        "description": null,
+        "required_data": "[\"eco_duty_guid\"]",
+        "allow_digital": "0",
+        "created_at": "2020-11-26 22:48:13",
+        "updated_at": "2020-11-26 22:48:13",
+        "deleted_at": null
+    },
+    {
+        "guid": "5712dd3d-a3e4-4b39-a75e-6fb6ea81f352",
+        "name": "Capacidade contratada",
+        "code": "contracted_capacity_attachment",
+        "description": null,
+        "required_data": "[\"eco_duty_guid\"]",
+        "allow_digital": "0",
+        "created_at": "2020-11-26 22:48:13",
+        "updated_at": "2020-11-26 22:48:13",
+        "deleted_at": null
+    },
+    {
+        "guid": "648f9b70-eeb7-4e65-91e2-0cc7d0029a19",
+        "name": "Registro Fotográfico da Fachada",
+        "code": "photo_record_organization_facade",
+        "description": null,
+        "required_data": "[\"eco_duty_guid\"]",
+        "allow_digital": "0",
+        "created_at": "2020-11-26 22:48:13",
+        "updated_at": "2020-11-26 22:48:13",
+        "deleted_at": null
+    },
+    {
+        "guid": "6b981abe-5e33-49d8-8b1b-fabc9f2b4c38",
+        "name": "Anexo de Conclusão de Ofício de Pendências",
+        "code": "eco_duty_report_review_submitted",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2021-03-10 21:20:29",
+        "updated_at": "2021-03-10 21:20:29",
+        "deleted_at": null
+    },
+    {
+        "guid": "73322a02-6480-4384-a308-c64b1f560bf5",
+        "name": "Registro Fotográfico da Linha de Operação",
+        "code": "photo_record_organization_operation_line",
+        "description": null,
+        "required_data": "[\"eco_duty_guid\"]",
+        "allow_digital": "0",
+        "created_at": "2020-11-26 22:48:13",
+        "updated_at": "2020-11-26 22:48:13",
+        "deleted_at": null
+    },
+    {
+        "guid": "77c62262-333c-4c1c-a208-c260b0638889",
+        "name": "Licença Ambiental",
+        "code": "environmental_licensing",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "7bb2a47d-a44a-4186-980f-35a4bec8253e",
+        "name": "Anexo de Análise de relatório anual de desempenho",
+        "code": "eco_duty_report_review_attachment",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-11-26 22:48:13",
+        "updated_at": "2020-11-26 22:48:13",
+        "deleted_at": null
+    },
+    {
+        "guid": "8a84059f-c717-4cfd-b306-f92d206f6206",
+        "name": "Alvará de Funcionamento",
+        "code": "business_license",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "8d520d27-8be9-4479-98ac-70042520cd99",
+        "name": "Licença Ambiental ou dispensa",
+        "code": "environmental_license_or_waiver",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "8f030239-71df-4766-824f-252a9085ab28",
+        "name": "Declaração de Capacidade Operacional",
+        "code": "operational_capacity_statement",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "a97c4f60-6af9-448e-8435-364894ce38eb",
+        "name": "CNPJ",
+        "code": "organization_federal_registration",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    },
+    {
+        "guid": "d0536f45-df57-4dc7-b195-bb6e28542f8d",
+        "name": "Listagem de organizações para cadastro no sistema",
+        "code": "organizations_list_submitted",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2021-03-19 21:47:47",
+        "updated_at": "2021-03-19 21:47:47",
+        "deleted_at": null
+    },
+    {
+        "guid": "fa39bbe7-85d5-4f1c-92d4-22bf45bbb69a",
+        "name": "Certificado de calibração de balanças",
+        "code": "balance_calibration_certificate",
+        "description": null,
+        "required_data": null,
+        "allow_digital": "0",
+        "created_at": "2020-07-16 20:56:54",
+        "updated_at": "2020-07-16 20:56:54",
+        "deleted_at": null
+    }
+]

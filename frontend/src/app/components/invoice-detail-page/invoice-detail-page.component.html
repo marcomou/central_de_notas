@@ -1,0 +1,64 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-lg-12 d-flex align-items-center justify-content-between">
+      <h1 class="title">Informações sobre a colidência</h1>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="close()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row row-cols-1 alert alert-info">
+    <div class="col">
+      <p>Chave da nota: {{ invoice?.access_key }}</p>
+    </div>
+    <div class="col">
+      <p>Emissor: {{ invoice?.issuer.federal_taxid }} - {{ invoice?.issuer.name }}</p>
+    </div>
+    <div class="col">
+      <p>Tomador: {{ invoice?.recipient.federal_taxid }} - {{ invoice?.recipient.name }}</p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <h3 style="font-size: 1.5rem;">Empresas com a nota colidida:</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="nhe-table">
+        <thead>
+          <tr>
+            <th>CNPJ</th>
+            <th>Razão social</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let gatherer of (invoice?.gatherers || [])">
+            <tr *ngIf="gatherer.collidence_group_guid === 'central-de-notas'">
+              <td>
+                {{ gatherer.organization?.federal_registration }}
+              </td>
+              <td>
+                {{ gatherer.organization?.legal_name }}
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" *ngIf="hasNotRegulatoryBody">
+    <div class="col-12">
+      <button
+        type="button"
+        class="btn btn-primary ms-auto"
+        (click)="giveUpTheDispute()"
+      >Desistir da disputa</button>
+    </div>
+  </div>
+</div>

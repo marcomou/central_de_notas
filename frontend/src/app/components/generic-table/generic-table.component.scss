@@ -1,0 +1,35 @@
+.table-header {
+  background-color: #eeeeee;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 4.8px;
+  border: 1px solid #a9a9a9;
+
+  .div {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
+}
+
+.table-content {
+  *.row {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 4.8px;
+    border: 1px solid #eeeeee;
+    padding: 0.5rem;
+    .col {
+      button.btn {
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.btn-delete-organization {
+    width: 100%;
+    padding: 1.6875rem 4.625rem;
+    font-size: 1.125rem;
+
+    border-radius: 8px;
+    border: 1px solid #949495;
+
+    background-color: #ffffff;
+
+    .span-delete-organization {
+        padding: 4px;
+        font-size: 1.16rem;
+        border-radius: 10px;
+
+        margin-right: 18px;
+
+        border: 1px solid var(--color-red);
+    }
+
+    span {
+        color: var(--color-red);
+    }
+
+    span:last-of-type {
+        text-decoration: underline;
+    }
+
+    &:hover {
+        background-color: var(--color-red);
+        border-color: var(--color-red);
+
+        transition: 0.2s;
+
+        span {
+            color: #ffffff;
+            text-decoration: none;
+
+            transition: 0.2s;
+        }
+    }
+}
+
+.modal-header,
+.modal-body {
+    padding: 30px 74px;
+}
+
+.modal-header .modal-title {
+    color: var(--color-green);
+}
+
+.modal-body .modal-btns {
+    .btn-save {
+        margin-left: 15px;
+    
+        span {
+            margin-right: 12px;
+    
+            color: #FFFFFF;
+        }
+    }
+}

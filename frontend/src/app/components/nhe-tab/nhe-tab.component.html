@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 btn-tabs mb-3">
+      <button
+        type="button"
+        *ngFor="let subpage of subpages | keyvalue"
+        class="btn btn-tab-outline-white"
+        [ngClass]="{ selected: pageIsEnabled(subpage.key) }"
+        (click)="changePage(subpage.key)"
+      >
+        {{ subpage.value.title }}
+        <!-- <span
+          *ngIf="pageIsPending(subpage.key)"
+          class="material-icons icon-info"
+        >
+          info 
+        </span> -->
+      </button>
+    </div>
+  </div>
+</div>

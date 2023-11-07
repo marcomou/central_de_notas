@@ -1,0 +1,28 @@
+.modal-header,
+.modal-body {
+    padding: 30px 74px;
+}
+
+.modal-body {
+    img {
+        width: 126px;
+        margin-bottom: 40px;
+    }
+
+    .title {
+        color: var(--color-green);
+        margin-bottom: 20px;
+    }
+
+    &.question {
+        .title {
+            color: var(--color-secondary);
+        }
+    }
+}
+
+.modal-footer {
+    button {
+        padding: 20px 50px;
+    }
+}

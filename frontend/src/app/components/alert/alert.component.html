@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h2 class="modal-title pull-left"></h2>
+
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div [class]="'modal-body ' + status">
+  <div class="d-flex flex-column align-items-center modal-btns">
+    <img *ngIf="imgs[status]" [src]="imgs[status]" alt="OK">
+
+    <h1 class="title" [ngClass]="ngClassTitle">{{ title }}</h1>
+
+    <p class="p3">{{ message }}</p>
+  </div>
+</div>
+
+<div class="modal-footer justify-content-center modal-btns">
+  <button *ngIf="buttonCancel.enabled" type="button" class="btn btn-secondary py-2" (click)="close()">
+    {{ buttonCancel.text }}
+  </button>
+
+  <button type="button" class="btn py-2" [ngClass]="ngClassStatus" (click)="onClickPrimary()">
+    {{ buttonPrimaryText }}
+  </button>
+</div>

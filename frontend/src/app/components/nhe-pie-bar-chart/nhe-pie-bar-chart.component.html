@@ -1,0 +1,18 @@
+<div
+  echarts
+  [options]="chartOption"
+  class="demo-chart"
+  *ngIf="!hasError; else hasError"
+></div>
+
+<ng-template #hasError>
+  <div class="row h-100 bg-info">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <h1>Houve um erro ao buscar os dados</h1>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <div class="col-6">
+    <div echarts [options]="barChartOption" class="demo-chart"></div>
+  </div> -->

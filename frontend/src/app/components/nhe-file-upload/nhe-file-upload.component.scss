@@ -1,0 +1,62 @@
+.div-nhe-file-upload {
+  border: 1px dashed #a9a9a9;
+  border-radius: 4.8px;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    > p {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+  .file-btns {
+    .btn-outline-file,
+    .btn-file {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 10px;
+    }
+
+    .btn-outline-file:not(:hover) {
+      border-color: #d8d8d8 !important;
+      color: #a4a4a4 !important;
+    }
+  }
+
+  &.success {
+    background: rgba(214, 244, 232, 0.3);
+  }
+
+  &.error {
+    background: rgba(244, 219, 214, 0.3);
+  }
+
+  &.pending {
+    background: rgba(244, 241, 214, 0.3);
+  }
+}
+
+// Modal
+$padding-x-default: 74px;
+
+.modal-header {
+  padding: 30px $padding-x-default;
+
+  .modal-title {
+    color: var(--color-green);
+  }
+
+  button span {
+    color: var(--color-primary);
+  }
+}
+
+.modal-body {
+  padding: 60px $padding-x-default;
+}

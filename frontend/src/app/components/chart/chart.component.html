@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-6">
+    <div [id]="'chartdiv' + id" style="width: 100%; height: 500px"></div>
+  </div>
+  <div class="col-6">
+    <div class="col-12 map-data">
+      <div class="card card-mini mt-2">
+        <div class="card-header font-weight-bold">
+          <h2>
+            {{
+              (showResumeData && showResumeData.name) || "Selecione uma área"
+            }}
+          </h2>
+        </div>
+        <div class="card-body text-muted text-center" *ngIf="!showResumeData">
+          Selecione um estado para visualizar o total contratado e compensado.
+        </div>
+
+        <div
+          class="card-body text-muted text-center"
+          *ngIf="showResumeData && !showResumeData.data.clearing_location"
+        >
+          Não há contratos na área selecionada.
+        </div>
+
+        <ul
+          class="list-group list-group-flush"
+          *ngIf="showResumeData && showResumeData.data.clearing_location"
+        >
+          <li class="list-group-item p-2">
+            Contratado:
+            <b
+              >{{
+                showResumeData.data.goal_liability_t_sum | number: "1.0-3"
+              }}t</b
+            >
+          </li>
+          <li class="list-group-item p-2">
+            Média Certificada:
+            <b
+              >{{
+                showResumeData.data.goal_liability_perc | number: "1.2-2"
+              }}%</b
+            >
+          </li>
+          <li class="list-group-item p-2">
+            Compensado:
+            <b
+              >{{ showResumeData.data.cleared_t_weight | number: "1.0-3" }}t ({{
+                showResumeData.data.cleared_percent | number: "0.0-0"
+              }}%)</b
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="card card-mini mt-3">
+        <div class="card-header pr-">
+          Contratado
+          <span class="pull-right">
+            <small>% compensado</small>
+          </span>
+        </div>
+        <div class="card-body text-muted text-center" *ngIf="!showResumeData">
+          Selecione um estado para visualizar os materiais
+          contratados/compensados
+        </div>
+
+        <ul class="list-group list-group-flush" *ngIf="showResumeData">
+          <li
+            class="list-group-item p-2 pl-2 pr-2 material-resume-item d-flex align-items-center"
+            *ngFor="let materialKey of materialListKeys"
+            [ngClass]="{
+              'bg-light': getMaterialGoal(showResumeData.data, materialKey) == 0
+            }"
+          >
+            <span
+              class="material-icons"
+              [class]="getMaterialByKey(materialKey).color"
+            >
+              {{ getMaterialByKey(materialKey)?.icon }}
+            </span>
+            <span
+              [ngClass]="{
+                'text-muted':
+                  getMaterialGoal(showResumeData.data, materialKey) == 0
+              }"
+              class="mx-1"
+            >
+              {{ getMaterialByKey(materialKey).name || materialKey }}:
+              <b>
+                {{
+                  getMaterialGoal(showResumeData.data, materialKey)
+                    | number: "1.0-3"
+                }}t
+              </b>
+              <small
+                class="pull-right pt-1"
+                [ngClass]="{
+                  'text-success':
+                    getMaterialPercentCleared(
+                      showResumeData.data,
+                      materialKey
+                    ) > 99,
+                  'text-muted':
+                    getMaterialPercentCleared(
+                      showResumeData.data,
+                      materialKey
+                    ) == 0
+                }"
+              >
+                {{
+                  getMaterialPercentCleared(showResumeData.data, materialKey)
+                    | number: "1.0-0"
+                }}%
+              </small>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

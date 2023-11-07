@@ -1,0 +1,257 @@
+<div class="container-fluid mt-5">
+  <div class="row mt-5">
+    <!-- <nhe-box
+      label="Listagem de notas fiscais"
+      [isAnCollapse]="true"
+      [hasLeftButton]="false"
+      leftButtonLabel="+ Enviar Notas fiscais"
+      (leftButtonClicked)="openFileUploadModal()"
+    > -->
+    <nhe-box label="Listagem de notas fiscais" [isAnCollapse]="true">
+      <ng-container button>
+        <button 
+          *ngIf="hasManagingEntitySelected"
+          type="button" 
+          class="btn btn-primary py-3 me-3"
+          (click)="openFileUploadModal()"
+        >
+          Enviar notas
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-primary p-3"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasFilterSidebar"
+          aria-controls="offcanvasFilterSidebar"
+        >
+          <span
+            class="material-icons-outlined text-primary"
+            style="font-size: 1.5rem"
+          >
+            filter_alt
+          </span>
+        </button>
+      </ng-container>
+
+      <div class="row">
+        <div class="d-flex flex-row align-items-end">
+          <nhe-input label="Palavra-chave" class="w-100">
+            <input
+              type="text"
+              [(ngModel)]="filters.search"
+            />
+          </nhe-input>
+          <button 
+            type="button" 
+            class="btn btn-primary ms-2"
+            style="height: var(--header-input); width: var(--header-input);"
+            (click)="getInvoices()"
+          >
+            <span class="material-icons text-white" style="font-size: 1.8rem;">search</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <table class="nhe-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Emissor</th>
+                <th>Tomador</th>
+                <th>Material</th>
+                <!-- <th>Operação</th> -->
+                <th>Status do Arquivo</th>
+                <th>Status da Nota</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let invoiceFile of invoiceFiles">
+                <td>{{ invoiceFile.filename }}</td>
+                <td>{{ invoiceFile.issuerName || "-" }}</td>
+                <td>{{ invoiceFile.recipientName || "-" }}</td>
+                <!-- <td>{{ getMaterials(invoiceFile) || "-" }}</td> -->
+                <td>{{ invoiceFile?.aggregatedMaterialsToString() || "-" }}</td>
+                <!-- <td>{{ invoiceFile?.invoice?.getOperationType() || "-" }}</td> -->
+                <!-- <td>
+                  <span 
+                    class="text-nowrap p-2 rounded d-inline-flex flex-row align-items-center" 
+                    [ngStyle]="{ 'background': invoiceFile.getStatusColor() }"
+                  >
+                    {{ getStatus(invoiceFile) }}
+
+                    <button 
+                      *ngIf="invoiceFile.hasStatusMessage"
+                      class="btn ms-1 p-0 shadow-none"
+                      style="font-size: 1.25rem;"
+                      [popover]="invoiceFile.getStatusMessage()"
+                      placement="auto"
+                      triggers="focus"
+                    >
+                      <span class="material-icons">
+                        help_outline
+                      </span>
+                    </button>
+                  </span>
+                </td> -->
+                <td>
+                  <span
+                    class="text-nowrap p-2 rounded d-inline-flex flex-row align-items-center" 
+                    [ngStyle]="{ 'background': invoiceFile.getStatusColor() }"
+                  >
+                    {{ invoiceFile.getStatus() }}
+  
+                    <button 
+                      *ngIf="invoiceFile.getStatusMessage() as details" 
+                      class="btn ms-1 p-0 shadow-none"
+                      style="font-size: 1.25rem;"
+                      [popover]="details"
+                      placement="auto"
+                      triggers="focus"
+                    >
+                      <span class="material-icons">
+                        help_outline
+                      </span>
+                    </button>
+                  </span>
+                </td>
+                <td>
+                  <span
+                  class="text-nowrap p-2 rounded d-inline-flex flex-row align-items-center" 
+                  [ngStyle]="{ 'background': invoiceFile.invoice?.getStatusColor() || invoiceColorDefault }"
+                  >
+                    {{ invoiceFile?.invoice?.getStatus() || '-' }}
+  
+                    <button 
+                      *ngIf="invoiceFile.invoice?.getStatusMessage() as details" 
+                      class="btn ms-1 p-0 shadow-none"
+                      style="font-size: 1.25rem;"
+                      [popover]="details"
+                      placement="auto"
+                      triggers="focus"
+                    >
+                      <span class="material-icons">
+                        help_outline
+                      </span>
+                    </button>
+                  </span>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-primary text-white p-2"
+                    (click)="openDetail(invoiceFile)"
+                    *ngIf="invoiceFile.collidence"
+                  >
+                    <span class="material-icons text-white me-1"
+                      >visibility</span
+                    >
+                    Ver colidência
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col d-flex justify-content-end">
+          <nhe-pagination
+            *ngIf="!loading"
+            [totalItems]="total"
+            [perPage]="top"
+            [maxSize]="10"
+            [currentPage]="currentPage"
+            (pageChanged)="pageChanged($event.page)"
+          >
+          </nhe-pagination>
+        </div>
+      </div>
+    </nhe-box>
+  </div>
+</div>
+
+<div
+  #filterSidebar
+  class="offcanvas offcanvas-end w-auto"
+  tabindex="-1"
+  id="offcanvasFilterSidebar"
+  data-bs-keyboard="false"
+  data-bs-backdrop="false"
+  aria-labelledby="offcanvasFilterSidebarLabel"
+>
+  <div class="offcanvas-header">
+    <div class="row">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-link"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
+          <span class="material-icons text-primary" style="font-size: 2rem">
+            west
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas-body">
+    <div class="row row-cols-1 g-3" style="min-width: 300px; max-width: 25rem;">
+      <div class="col">
+        <nhe-input label="Status">
+          <select
+            name="invoice_status"
+            id="invoice_status"
+            [(ngModel)]="invoiceStatus"
+          >
+            <option value="">Todos os status</option>
+
+            <option *ngFor="let status of statusList" [value]="status.id">
+              {{ status.value }}
+            </option>
+          </select>
+        </nhe-input>
+      </div>
+      <div class="col">
+        <nhe-input label="Material">
+          <select
+            name="material"
+            id="material"
+            [(ngModel)]="filters.material"
+          >
+            <option value="">Todos os material</option>
+
+            <option *ngFor="let status of materialTypes" [value]="status.code">
+              {{ status.name }}
+            </option>
+          </select>
+        </nhe-input>
+      </div>
+      <!-- <div class="col" *ngIf="!hasManagingEntitySelected">
+        <div class="alert alert-info">Selecione uma organização para fazer a busca por emissor ou tomador.</div>
+      </div> -->
+      <!-- <div class="col" *ngIf="hasManagingEntitySelected"> -->
+      <!-- <div class="col">
+        <nhe-input label="Emissor (Razão Social)">
+          <input
+            type="text"
+            [(ngModel)]="filters.search"
+          />
+        </nhe-input>
+      </div> -->
+      <div class="col">
+        <button 
+          type="button" 
+          class="btn btn-primary w-100"
+          (click)="getInvoices()"
+        >
+          Aplicar filtros
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

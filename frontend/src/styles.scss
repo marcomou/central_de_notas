@@ -1,0 +1,87 @@
+@import "./scss/variables.scss";
+@import "./scss/bootstrap/bootstrap.scss";
+@import "./scss/global.scss";
+
+select,
+input:not([type="checkbox"]),
+textarea {
+  padding: 1.1875rem 2.5rem;
+  font-size: 1.16rem;
+  border-radius: 4.8px;
+
+  border: 1.3px solid var(--color-borders);
+}
+
+select,
+input:not([type="checkbox"]) {
+  height: var(--header-input);
+}
+
+.has-error {
+  .form-control {
+    border-width: 1px;
+    border-color: var(--color-red) !important;
+  }
+}
+
+option {
+  color: var(--black);
+}
+
+textarea {
+  resize: none !important;
+  border: 1.3px solid var(--color-borders) !important;
+}
+
+.input-group {
+  input,
+  textarea {
+    // height: calc(1.375rem + 1.1875rem);
+    padding: 1.1875rem 0 1.1875rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  & > span {
+    padding: 1.1875rem 0.875rem;
+  }
+}
+
+input[disabled],
+input[readonly],
+textarea[readonly],
+.form-control[readonly],
+.input-group.readonly,
+.input-group.readonly input[readonly] {
+  $color-input-disabled: #f4f5f5;
+
+  background-color: $color-input-disabled !important;
+
+  & ~ .nhe-input-label {
+    background: linear-gradient(
+      0deg,
+      $color-input-disabled 51%,
+      transparent 49%
+    ) !important;
+  }
+}
+
+.input-search {
+  width: 100%;
+  height: 1.5rem;
+  padding: 1.125rem 3.125rem !important;
+  border-radius: 12px !important;
+
+  box-sizing: content-box;
+}
+
+.text-green {
+  color: $color-green;
+}
+
+.text-blue {
+  color: $color-blue;
+}
+
+.text-warning {
+  color: $yellow;
+}

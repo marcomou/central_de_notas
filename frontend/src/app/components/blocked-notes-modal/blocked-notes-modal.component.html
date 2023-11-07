@@ -1,0 +1,30 @@
+<div onload="openBlockedNotesModal()">
+  <div class="modal-header">
+    <h2 class="title-modal pull-left">Suas notas de saída foram enviadas com sucesso!</h2>
+    <button
+      type="button"
+      class="pull-right btn p-0"
+      aria-label="Close"
+      (click)="close()"
+    >
+      <span class="material-icons"> close </span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row d-flex flex-column align-items-center justify-content-center">
+      <div class="col-12">  
+        <span class="warning-notes-blocked">Não é possivel enviar notas de entrada!</span>
+      </div>
+      <div class="col-12">
+        <span class="title-notes-blocked">Notas de entrada não enviadas:</span>
+        <tbody>
+          <tr class="d-flex flex-column align-items-start justify-content-start" 
+          *ngFor="let blockedNote of blockedNotesList"  
+          >
+            <td>{{blockedNote.name}}</td>
+          </tr>
+        </tbody>
+      </div>
+    </div>
+  </div>
+</div>

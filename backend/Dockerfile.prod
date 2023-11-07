@@ -1,0 +1,19 @@
+FROM public.ecr.aws/o8p7s4m6/php81-grpc
+
+RUN echo "extension=grpc.so" > /opt/docker/etc/php/php.ini
+
+COPY . .
+
+RUN [ -d bootstrap/cache ] || mkdir bootstrap/cache && \
+	chmod -R 777 storage bootstrap/cache && \
+	composer install && \
+	cp .env.example .env && \
+    sed -i \
+        -e "s/LOG_CHANNEL=.*/LOG_CHANNEL=stderr/"\
+        -e "s/DB_CONNECTION=.*/DB_CONNECTION=pgsql/"\
+        .env && \
+	php artisan key:generate
+
+RUN rm -f .env .env*
+
+ENTRYPOINT ["./artisan", "serve", "--host=0.0.0.0", "--port=80"]

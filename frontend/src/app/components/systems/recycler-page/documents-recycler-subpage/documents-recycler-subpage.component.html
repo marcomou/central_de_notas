@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row">
+    <nhe-box label="Documentos" [isAnCollapse]="true">
+      <div
+          *ngFor="let codeRequired of documentTypesRequired; index as i"
+          class="row"
+          [ngClass]="{ 'mt-3': i > 0 }"
+        >
+          <div class="col-12">
+            <nhe-file-upload
+              [description]="documentTypes[codeRequired]?.name || ''"
+              [documentTypeId]="documentTypes[codeRequired]?.id || ''"
+              [ecoMembershipId]="ecoMembershipId"
+              [documentAttachment]="documents[codeRequired] || null"
+              [options]="options"
+            ></nhe-file-upload>
+          </div>
+        </div>
+    </nhe-box>
+  </div>
+</div>

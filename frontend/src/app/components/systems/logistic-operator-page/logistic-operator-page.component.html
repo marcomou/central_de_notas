@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <!-- <div class="row mb-5">
+    <div class="col-12">
+      <nhe-eco-duty-status></nhe-eco-duty-status>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title routerLinkButtonLeft="/systems/logistic-operators/list">
+        <ng-container title>
+          {{ ecoMembership?.member_organization?.front_name || 'Operador Logístico' }}
+        </ng-container>
+
+        <!-- <ng-container buttonRight>
+          <button type="button" class="btn btn-primary" (click)="submit()">
+            <span class="material-icons text-white me-1">save</span>
+            Salvar
+          </button>
+        </ng-container> -->
+      </nhe-title>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <nhe-tab [(subpages)]="subpages"></nhe-tab>
+
+    <ng-container *ngIf="subpages.data.enabled">
+      <app-data-logistic-operator-subpage
+        [ecoMembership]="ecoMembership"
+      ></app-data-logistic-operator-subpage>
+    </ng-container>
+
+    <ng-container *ngIf="subpages.documents.enabled">
+      <app-documents-logistic-operator-subpage
+        [ecoMembershipId]="ecoMembership?.id || ''"
+      ></app-documents-logistic-operator-subpage>
+    </ng-container>
+
+    <ng-container *ngIf="subpages.homologation.enabled">
+      <app-homologation-logistic-operator-subpage
+        [ecoMembershipId]="ecoMembership?.id || ''"
+      ></app-homologation-logistic-operator-subpage>
+    </ng-container>
+
+    <ng-container *ngIf="subpages.invoices.enabled">
+      <app-invoices-logistic-operator-subpage
+        [ecoMembership]="ecoMembership"
+      ></app-invoices-logistic-operator-subpage>
+    </ng-container>
+  </div>
+</div>

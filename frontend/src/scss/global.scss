@@ -1,0 +1,62 @@
+@import "./nhe-table.scss";
+
+* {
+  font-family: Inter;
+  color: $color-secondary;
+}
+
+body {
+  background-color: var(--color-bg-white);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+h1 {
+  // font-size: 36px;
+  // font-size: 27px;
+  font-size: 2.25rem;
+}
+
+h2 {
+  // font-size: 24px;
+  // font-size: 1.5rem;
+  font-size: 2.25rem;
+}
+
+h3 {
+  // font-size: 16px;
+  // font-size: 1rem;
+  font-size: 2.25rem;
+}
+
+p:not(strong) {
+  font-weight: 400;
+}
+
+.p1 {
+  // font-size: 24px;
+  // font-size: 2.4rem;
+  font-size: 1.33rem; // md: 16px
+}
+
+.p2 {
+  // font-size: 16px;
+  // font-size: 1.6rem;
+  font-size: 1.16rem; // md: 14px
+}
+
+p,
+strong,
+.p3 {
+  // font-size: 14px;
+  // font-size: 1.4rem;
+  font-size: 1rem; // md: 12px
+}
+
+p {
+  margin: 0;
+}

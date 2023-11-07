@@ -1,0 +1,10 @@
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./buttons.scss";
+@import "./pagination.scss";
+
+input[type=text],
+input[type=number],
+select {
+  background-color: #fff;
+}

@@ -1,0 +1,35 @@
+<div class="sidebar" [ngClass]="{ close: hasMinimized }">
+  <div class="row hamburguer">
+    <div class="ms-3 px-3 py-4 ps-2">
+      <span class="material-icons mx-3" (click)="changeMinimization()">
+        menu
+      </span>
+    </div>
+  </div>
+
+  <div class="row title mx-0" *ngIf="title">
+    <div class="ms-3 d-flex align-items-center p-3 ps-0">
+      <span class="material-icons text-white mx-3"> scatter_plot </span>
+      <span class="text-white span-text">
+        {{ title }}
+      </span>
+    </div>
+  </div>
+
+  <div class="d-flex item-list">
+    <ul class="ms-3 nav nav-pills d-flex flex-column mb-auto">
+      <li class="nav-item mt-3" *ngFor="let item of menuItems">
+        <a
+          class="nav-link d-flex flex-row align-items-center p-3 ps-0"
+          [routerLink]="item.routerLink"
+          routerLinkActive="active"
+        >
+          <span class="material-icons mx-3"> {{ item.icon }} </span>
+          <span class="span-text">
+            {{ item.name }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

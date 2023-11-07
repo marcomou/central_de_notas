@@ -1,0 +1,133 @@
+<form class="container my-5" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row mb-5">
+    <div class="col-12">
+      <nhe-eco-duty-status></nhe-eco-duty-status>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-5">
+      <nhe-title routerLinkButtonLeft="/systems/adhering-companies/list">
+        <ng-container title> Declaração de Massa </ng-container>
+      </nhe-title>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="div-description">
+        <div class="row">
+          <div class="col-12">
+            <p>
+              Indique a <strong>massa total</strong> de cada um dos materiais
+              presentes nas embalagens inseridas no mercado no ano-base de 2019
+              pelo conjunto de todas as Empresas Aderentes.
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div
+            class="col-6 col-lg-3"
+            *ngFor="let material of materialMass | keyvalue; index as i"
+          >
+            <div class="mt-5">
+              <nhe-input [label]="material.value.name + ' (t)'">
+                <div class="input-group input-number">
+                  <div
+                    class="d-flex align-items-center justify-content-center input-number-img"
+                  >
+                    <img [src]="material.value.icon" [alt]="material.value.name" />
+                  </div>
+
+                  <input type="number" [formControlName]="material.value.code" />
+
+                  <div class="input-btns">
+                    <span
+                      class="d-flex align-items-center justify-content-center"
+                    >
+                      <button
+                        type="button"
+                        class="material-icons-round"
+                        (click)="sumLiabilityDeclarations(material.value.code)"
+                      >
+                        arrow_drop_up
+                      </button>
+                    </span>
+                    <span
+                      class="d-flex align-items-center justify-content-center"
+                    >
+                      <button
+                        type="button"
+                        class="material-icons-round"
+                        (click)="subLiabilityDeclarations(material.value.code)"
+                      >
+                        arrow_drop_down
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </nhe-input>
+            </div>
+
+            <div
+              class="d-flex flex-column justify-content-between mass-declaration-box mt-3"
+              [style]="'background-color: ' + material.value.color"
+            >
+              <p class="mb-2 text-white">
+                Meta definida:
+                <strong class="text-white">
+                  {{ material.value.definedGoalsPercent }}
+                </strong>
+                %
+              </p>
+
+              <p class="mb-2 text-white">
+                Massa a comprovar:
+                <strong class="text-white great">
+                  <!-- {{ material.value.definedGoalsWeightMass.mass_kg }}t -->
+                  {{ calcDefinedGoalsWeightMassTon(material.value) }}t
+                </strong>
+              </p>
+
+              <p class="mb-2 text-white">
+                Massa comprovada:
+                <strong class="text-white great">
+                  {{ getValidatedOutgoingOperationMassesTon(material.value) }}t
+                </strong>
+              </p>
+
+              <!-- <div class="d-flex flex-row align-items-center">
+                <div class="progress-bar">
+                  <div
+                    [style]="'width: ' + getCurrentPercentage(i) + '%;'"
+                  ></div>
+                </div>
+
+                <strong
+                  [ngClass]="getNgClass(i)"
+                  class="ms-1"
+                  style="white-space: nowrap"
+                >
+                  {{ getCurrentPercentage(i) }} %
+                </strong>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="d-flex flex-row align-items-center justify-content-end">
+        <!-- <button type="button" class="btn btn-secondary me-3">Cancelar</button> -->
+        <button type="submit" class="btn btn-primary" [disabled]="form.disabled || form.invalid">
+          <span class="material-icons text-white"> save </span>
+          <span class="text-white mx-1"> Salvar </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

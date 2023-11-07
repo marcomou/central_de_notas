@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    entrypoint: ./entrypoint.sh
+    container_name: central-depositaria-frontend-app
+    ports:
+      - 4300:4200
+    environment:
+      - HOST=0.0.0.0
+    volumes:
+      - .:/home/node/app
+    networks:
+      - central_depositaria
+
+networks:
+  central_depositaria:
+    driver: bridge

@@ -1,0 +1,140 @@
+.div-description {
+  padding: 3.75rem 4.6875rem;
+
+  border: 1px solid var(--color-borders);
+  border-radius: 8px;
+}
+
+.input-number {
+  display: grid;
+  grid-template-columns: 1fr 3fr min-content;
+
+  height: 100%;
+
+  .input-number-img {
+    padding: 5px 5px 0;
+
+    border: 1.3px solid var(--color-borders);
+    border-right: none;
+    border-radius: 4.8px 0 0 4.8px;
+
+    background-color: #ffffff;
+
+    img {
+      height: 3.125rem;
+    }
+  }
+
+  input {
+    width: 100%;
+
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+
+    outline: none;
+
+    &[type="number"] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      & ~ .input-btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        cursor: default;
+
+        & button.material-icons-round {
+          background-color: transparent;
+          color: #afafaf;
+
+          cursor: pointer;
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
+  & > .input-btns {
+    padding: 1.1875rem 0.875rem;
+
+    border: 1.3px solid var(--color-borders);
+    border-left: none;
+    border-radius: 0 4.8px 4.8px 0;
+
+    background-color: #ffffff;
+
+    & > span {
+      width: 10px;
+      height: 10px;
+
+      overflow: hidden;
+
+      & > button {
+        font-size: 2.75rem;
+      }
+    }
+  }
+}
+
+.mass-declaration-box {
+  padding: 0.9375rem 1.25rem;
+  border-radius: 4.8px;
+
+  p {
+    font-size: 0.875rem !important;
+
+    strong {
+      font-size: 0.875rem;
+
+      &.great {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 5px;
+
+    border-radius: 2px;
+
+    background-color: rgba(255, 255, 255, 0.3);
+
+    overflow: hidden;
+
+    & > div {
+      height: 100%;
+
+      border-radius: 2px;
+
+      background-color: #ffffff;
+    }
+  }
+}
+
+.goalReached,
+.goalNotReached {
+  padding: 2px 5px;
+  // margin-bottom: 5px;
+  border-radius: 4.8px;
+}
+
+.goalReached {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+.goalNotReached {
+  background-color: rgba(255, 255, 255, 0.3);
+  // color: var(--color-red);
+  // color: #FB4143;
+  color: #912c27;
+}

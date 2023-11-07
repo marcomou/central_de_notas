@@ -1,0 +1,32 @@
+<div
+  class="alert alert-primary d-flex flex-row align-items-center justify-content-between eco-duty-status"
+>
+  <div class="description">
+    <div>
+      <strong>Ano-base Selecionado</strong>
+      <p>{{ year }}</p>
+    </div>
+
+    <div>
+      <strong>Identificador</strong>
+      <p>{{ identifier }}</p>
+    </div>
+
+    <div>
+      <strong>Última atualização</strong>
+      <p>{{ updatedAt | date: "dd/MMM/yyyy hh:mm" }}</p>
+    </div>
+
+    <div class="status">
+      <strong>Status</strong>
+      <p [ngClass]="ngClass">{{ status }}</p>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary px-3"
+    routerLink="/systems/reverse-systems-list"
+  >
+    Ver todos os sistemas
+  </button>
+</div>

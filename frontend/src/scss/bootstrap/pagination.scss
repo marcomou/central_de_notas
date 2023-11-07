@@ -1,0 +1,37 @@
+.pagination {
+  align-items: center;
+
+  li + li {
+    margin-left: 7px;
+  }
+
+  li {
+    a {
+      border-radius: 8px !important;
+    }
+
+    &.pagination-prev,
+    &.pagination-next {
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
+        border: none;
+
+        background-color: transparent;
+
+        cursor: pointer;
+      }
+    }
+
+    &.pagination-page:not(.active) a {
+      border: none;
+
+      background: #e1dfdf;
+      color: var(--color-black);
+    }
+  }
+}

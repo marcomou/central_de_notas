@@ -1,0 +1,201 @@
+<div class="container my-5">
+    <div class="signup-page row">
+      <nhe-title routerLinkButtonLeft="/systems/reverse-systems-list/list">
+        <ng-container title>
+          Cadastro de entidade gestora
+        </ng-container>
+      </nhe-title>
+  
+      <div class="col-lg-12 mt-5">
+        <div class="row">
+          <nhe-box label="Dados da Empresa" [isAnCollapse]="true">
+            <form [formGroup]="signupForm">
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="CNPJ">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="text"
+                      formControlName="federal_registration"
+                      required
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="Razão Social">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="text"
+                      formControlName="legal_name"
+                      required
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="Nome Fantasia">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="text"
+                      formControlName="front_name"
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <nhe-input label="Natureza Jurídica">
+                    <select
+                      appInputRef
+                      name="teste"
+                      id="teste"
+                      formControlName="legal_type_id"
+                    >
+                      <option
+                        *ngFor="let legalType of legalTypes"
+                        [value]="legalType?.id"
+                      >
+                        {{ legalType?.name }}
+                      </option>
+                    </select>
+                  </nhe-input>
+                </div>
+              </div>
+            </form>
+          </nhe-box>
+        </div>
+  
+        <div class="row mt-4">
+          <nhe-box label="Dados do Usuário" [isAnCollapse]="true">
+            <form [formGroup]="userForm">
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="Nome">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="text"
+                      formControlName="name"
+                      id="input-name-user"
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="CPF">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="text"
+                      formControlName="federal_registration"
+                      id="input-federal-registration"
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+  
+              <div class="row mb-4">
+                <div class="col-12">
+                  <nhe-input label="Email">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="email"
+                      formControlName="email"
+                      id="input-email"
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+  
+              <div class="row mb-4" *ngIf="isShown">
+                <div class="col-12">
+                  <nhe-input label="Senha">
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="password"
+                      formControlName="password"
+                      id="input-password"
+                      required
+                    />
+                  </nhe-input>
+                </div>
+              </div>
+              <div class="row" *ngIf="isShown">
+                <div class="col-12">
+                  <nhe-input
+                    label="Confirmar Senha"
+                    [ngClass]="{ 'has-error': !isSamePassword() }"
+                  >
+                    <input
+                      appInputRef
+                      class="form-control"
+                      type="password"
+                      formControlName="password_confirmation"
+                      id="input-password-confirmation"
+                      required
+                    />
+                  </nhe-input>
+                  <small class="text-danger" *ngIf="!isSamePassword()">
+                    As senhas não são iguais
+                  </small>
+                </div>
+              </div>
+            </form>
+          </nhe-box>
+        </div>
+  
+        <div class="row mt-2 m-0">
+          <div class="col-12 p-0">
+            <hr>
+          </div>
+        </div>
+  
+        <div class="row mt-2 mb-5" *ngIf="isShown">
+          <div class="col-lg-5">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="privacyTerms"
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Aceito os termos de política de privacidade e termos de uso
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-12">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [routerLink]="['/systems/reverse-systems-list/list']"
+              >
+                Voltar
+              </button>
+              <button
+                type="button"
+                class="btn btn-success ms-3"
+                (click)="submit()"
+                [disabled]="signupForm.invalid || userForm.invalid || !privacyTerms"
+              >
+                Cadastrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

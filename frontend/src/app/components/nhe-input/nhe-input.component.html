@@ -1,0 +1,15 @@
+<div
+  class="nhe-input-group"
+  [ngClass]="{ 'has-error': hasError }"
+>
+  <ng-content></ng-content>
+  <ng-container *ngIf="hasError">
+    <small class="text-danger" *ngFor="let msg of errorMessages">
+      {{ msg }}
+    </small>
+  </ng-container>
+
+  <label *ngIf="label" [for]="id" class="nhe-input-label">
+    {{ label }}
+  </label>
+</div>
